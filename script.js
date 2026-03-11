@@ -19,5 +19,3 @@ function slider(){
 
 setInterval(slider, 4000);
 slider();
-
-Show quoted text
