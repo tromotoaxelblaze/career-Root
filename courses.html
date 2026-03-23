@@ -12,11 +12,18 @@
 <!-- HEADER -->
 <header class="header">
   <div class="logo">Careeroot</div>
+  <!-- for hambuerger menu-->
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
 
-  <nav>
+  <nav id="main-nav" class="nav" >
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="courses.html">Courses</a></li>
+      <li><a href="blog.html">Blogs</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
@@ -33,7 +40,7 @@
 
     <!-- Course 1 -->
     <div class="course-card">
-      <img src="images/poster1.jpeg" alt="">
+      <img src="images/poster1.jpg" alt="">
       <h3>Full Stack Web Development</h3>
       <p>React, Node, MongoDB, real world projects.</p>
       <button>Know More</button>
@@ -41,7 +48,7 @@
 
     <!-- Course 2 -->
     <div class="course-card">
-      <img src="images/poster2.jpeg" alt="">
+      <img src="images/poster2.jpg" alt="">
       <h3>Data Analyst</h3>
       <p>SQL, Power BI, Excel, Python and internships.</p>
       <button>Know More</button>
@@ -49,7 +56,7 @@
 
     <!-- Course 3 -->
     <div class="course-card">
-      <img src="images/poster3.jpeg" alt="">
+      <img src="images/poster3.jpg" alt="">
       <h3>DevOps with AWS</h3>
       <p>CI/CD, Docker, Kubernetes, cloud projects.</p>
       <button>Know More</button>
@@ -57,7 +64,7 @@
 
     <!-- Course 4 -->
     <div class="course-card">
-      <img src="images/poster4.jpeg" alt="">
+      <img src="images/poster4.jpg" alt="">
       <h3>Java Backend</h3>
       <p>Spring Boot, microservices, live projects.</p>
       <button>Know More</button>
@@ -96,7 +103,7 @@
 
 </footer>
 
-<script src="script.js"></script>
+<script src="js/hammenu.js"></script>
 
 </body>
 </html>

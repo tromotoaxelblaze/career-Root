@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Careeroot</title>
-
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,14 +12,20 @@
 <!-- HEADER -->
 <header class="header">
   <div class="logo">Careeroot</div>
+  <!-- for hambuerger menu-->
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
 
-  <nav>
+  <nav id="main-nav" class="nav" >
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="courses.html">Courses</a></li>
+      <li><a href="blog.html">Blogs</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#contact">Contact</a></li>
-      <li><a href="blog.html">Blogs</a></li>
     </ul>
   </nav>
 </header>
@@ -28,8 +33,8 @@
 <!-- HERO SECTION -->
 <section class="hero">
   <div class="hero-content">
-    <h1>Upgrade Your Career with Industry Experts</h1>
-    <p>Live classes, real projects, and guaranteed placement support.</p>
+<!--    <h1>Upgrade Your Career with Industry Experts</h1>
+    <p>Live classes, real projects, and guaranteed placement support.</p> -->
     <a href="courses.html" class="hero-btn">Explore Courses</a>
   </div>
 </section>
@@ -43,25 +48,25 @@
   <div class="premium-container">
 
     <div class="premium-card">
-      <img src="images/poster1.jpeg">
+      <img src="images/poster1.jpg">
       <h3>Industry Recognized</h3>
       <p>Industry-recognized Certificate make your profile stand out.</p>
     </div>
 
     <div class="premium-card">
-      <img src="images/poster2.jpeg">
+      <img src="images/poster2.jpg">
       <h3>Hiring Sprints</h3>
       <p>Join fast-paced job drives and connect directly with top employers.</p>
     </div>
 
     <div class="premium-card">
-      <img src="images/poster3.jpeg">
+      <img src="images/poster3.jpg">
       <h3>Live Classes</h3>
       <p>Interactive live sessions with mentors and doubt clearing.</p>
     </div>
 
     <div class="premium-card">
-      <img src="images/poster4.jpeg">
+      <img src="images/poster4.jpg">
       <h3>Placement Support</h3>
       <p>Dedicated placement assistance and interview preparation.</p>
     </div>
@@ -138,7 +143,7 @@
       <!-- Founder 1 -->
       <div class="founder-card">
         <div class="founder-image">
-          <img src="images/founder1.jpg" alt="Founder 1">
+          <img src="Profile/dummy.png" alt="Founder 1">
         </div>
         <h3>Manish Kumar</h3>
         <span>Co-Founder & Program Director</span>
@@ -152,7 +157,7 @@
       <!-- Founder 2 -->
       <div class="founder-card">
         <div class="founder-image">
-          <img src="images/founder2.jpg" alt="Founder 2">
+          <img src="Profile/dummy.png" alt="Founder 2">
         </div>
         <h3>Co-Founder Name</h3>
         <span>Co-Founder & Strategy Lead</span>
@@ -317,7 +322,8 @@
 
 </footer>
 
-<script src="script.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/hammenu.js"></script>
 
 </body>
 </html>
