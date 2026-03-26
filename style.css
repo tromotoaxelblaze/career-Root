@@ -32,35 +32,94 @@
   font-size:24px;
   font-weight:bold;
 }
+.logo{
+  font-size:24px;
+  font-weight:bold;
+}
+
+/* 👇 ADD THIS RIGHT BELOW */
+.logo img{
+  height:40px;
+  width:auto;
+}
 
 nav ul{
   display:flex;
-  gap:30px;
+  gap:40px; /* increased from 30px */
   list-style:none;
 }
 
 nav a{
   text-decoration:none;
   color:#333;
-  font-weight:500;
+  font-weight:600;
+  font-size:15px;
+  padding:8px 16px;
+  border-radius:6px;
+  transition:0.3s;
 }
+
 nav a:hover{
-  color:#007bff;
+  background:#fff;
+  color:#2563eb;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 /* MOBILE: below 768px */
 @media (max-width:768px){
   .hamburger{ display:block; }
-  nav{ position:fixed; top:70px; right:0; left:0; background:#fff; transform:translateY(-10px); transition:opacity .2s ease, transform .2s ease; opacity:0; pointer-events:none; }
-  nav.open{ opacity:1; pointer-events:auto; transform:translateY(0); }
-  nav ul{ display:block; padding:16px; }
-  nav ul li{ margin:12px 0; }
-  
-  /* optional: animate hamburger to X when open */
-  .hamburger.open .bar:nth-child(1){ transform:translateY(7px) rotate(45deg); }
-  .hamburger.open .bar:nth-child(2){ opacity:0; }
-  .hamburger.open .bar:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
-}
 
+  nav{
+    position:fixed;
+    top:70px;
+    right:0;
+    left:0;
+    background:#fff;
+    transform:translateY(-10px);
+    transition:opacity .2s ease, transform .2s ease;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  nav.open{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
+  }
+
+  nav ul{
+    display:block;
+    padding:16px;
+  }
+
+  nav ul li{
+    margin:12px 0;
+  }
+
+  /* 👇 ADD THIS (your requirement) */
+  nav a{
+    display:block;
+    padding:12px;
+    border-radius:6px;
+  }
+
+  nav a:hover{
+    background:#f1f5f9;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  /* hamburger animation */
+  .hamburger.open .bar:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+  }
+
+  .hamburger.open .bar:nth-child(2){
+    opacity:0;
+  }
+
+  .hamburger.open .bar:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+  }
+}
 
 
 /* HERO */
@@ -77,6 +136,10 @@ nav a:hover{
   transition:1s;
 }
 
+.fade {
+  opacity: 0.6;
+}
+
 .hero-content h1{
   font-size:48px;
   margin-bottom:20px;
@@ -87,14 +150,7 @@ nav a:hover{
   margin-bottom:20px;
 }
 
-.hero button{
-  padding:12px 30px;
-  border:none;
-  background:#007bff;
-  color:white;
-  border-radius:5px;
-  cursor:pointer;
-}
+
 
 
 /* PREMIUM */
@@ -545,7 +601,8 @@ footer a{
   cursor:pointer;
 }
 .hero-btn{
-  display:inline-block;
+  display:block; /* changed from inline-block */
+  margin-top:15px; /* added spacing */
   padding:12px 28px;
   background:#2563eb;
   color:#fff;
@@ -716,5 +773,127 @@ footer a{
 @media(max-width:900px){
   .contact-container{
     flex-direction:column;
+  }
+}
+/* ================= HOME COURSES (BIG CARDS) ================= */
+
+.courses-insight{
+  padding:100px 8%;
+  text-align:center;
+  background:#f8fafc;
+}
+
+.courses-insight h2{
+  font-size:36px;
+  margin-bottom:10px;
+}
+
+.courses-insight p{
+  color:#777;
+  margin-bottom:50px;
+}
+
+/* Grid */
+.courses-insight-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+  gap:40px;
+}
+
+/* SAME AS COURSES PAGE */
+.course-card{
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:0.3s;
+  text-align:left;
+}
+
+.course-card:hover{
+  transform:translateY(-10px);
+}
+
+.course-card img{  
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.course-card h3{
+  margin:15px 15px 5px;
+}
+
+.course-card p{
+  padding:0 15px;
+  color:#555;
+}
+
+/* Button */
+.course-btn{
+  display:inline-block;
+  margin:15px;
+  padding:10px 20px;
+  background:#2563eb;
+  color:#fff;
+  border-radius:6px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.course-btn:hover{
+  background:#1d4ed8;
+}
+
+/* ================= RESPONSIVE HERO FIX ================= */
+
+/* Default (desktop) */
+.hero{
+  height:70vh; /* slightly bigger */
+  min-height:400px; /* prevents too small hero */
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+/* Tablet */
+@media (max-width:1024px){
+  .hero{
+    height:60vh;
+    padding:0 5%;
+  }
+}
+
+/* Mobile */
+@media (max-width:768px){
+  .hero{
+    height:50vh;
+    min-height:300px;
+    padding:0 20px;
+    background-position:center center;
+  }
+
+  .hero-content h1{
+    font-size:24px;
+  }
+
+  .hero-content p{
+    font-size:14px;
+  }
+
+  .hero-btn{
+    font-size:14px;
+    padding:10px 20px;
+  }
+}
+
+/* Small mobile */
+@media (max-width:480px){
+  .hero{
+    height:45vh;
   }
 }

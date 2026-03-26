@@ -11,7 +11,9 @@
 
 <!-- HEADER -->
 <header class="header">
-  <div class="logo">Careeroot</div>
+  <div class="logo">
+  <img src="Logo/IMG_7781.png" alt="Careeroot Logo">
+</div>
   <!-- for hambuerger menu-->
   <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
     <span class="bar"></span>
@@ -35,10 +37,42 @@
   <div class="hero-content">
 <!--    <h1>Upgrade Your Career with Industry Experts</h1>
     <p>Live classes, real projects, and guaranteed placement support.</p> -->
-    <a href="courses.html" class="hero-btn">Explore Courses</a>
+   
   </div>
 </section>
 
+<!-- COURSES INSIGHT -->
+<section class="courses-insight">
+
+  <h2>Popular Career Tracks</h2>
+  <p>Choose a career path and start your journey with industry-relevant skills.</p>
+
+  <div class="courses-insight-container">
+
+    <div class="course-card">
+      <img src="images/data.png" alt="Data Analyst">
+      <h3>Data Analyst</h3>
+      <p>Learn SQL, Excel, Power BI, and Python with real-world projects.</p>
+      <a href="courses.html" class="course-btn">View Course</a>
+    </div>
+
+    <div class="course-card">
+      <img src="images/devops.jpg" alt="DevOps">
+      <h3>DevOps</h3>
+      <p>Master AWS, Docker, Kubernetes, and CI/CD pipelines.</p>
+      <a href="courses.html" class="course-btn">View Course</a>
+    </div>
+
+    <div class="course-card">
+      <img src="images/power.png" alt="Power Platform">
+      <h3>Power Platform</h3>
+      <p>Build apps using PowerApps, Power Automate, and SharePoint.</p>
+      <a href="courses.html" class="course-btn">View Course</a>
+    </div>
+
+  </div>
+
+</section>
 
 <!-- PREMIUM LEARNING -->
 <section class="premium" id="premium">
@@ -48,25 +82,25 @@
   <div class="premium-container">
 
     <div class="premium-card">
-      <img src="images/poster1.jpg">
-      <h3>Industry Recognized</h3>
-      <p>Industry-recognized Certificate make your profile stand out.</p>
-    </div>
-
-    <div class="premium-card">
-      <img src="images/poster2.jpg">
-      <h3>Hiring Sprints</h3>
-      <p>Join fast-paced job drives and connect directly with top employers.</p>
-    </div>
-
-    <div class="premium-card">
-      <img src="images/poster3.jpg">
+      <img src="images/Card1.jpg">
       <h3>Live Classes</h3>
       <p>Interactive live sessions with mentors and doubt clearing.</p>
     </div>
 
     <div class="premium-card">
-      <img src="images/poster4.jpg">
+      <img src="images/card2.jpg">
+      <h3>Learn With Experts</h3>
+      <p>Bridges the gap between theory and practice by continuously updating curriculum with current industry tools and employer-demanded skills.</p>
+    </div>
+
+    <div class="premium-card">
+      <img src="images/card3.jpg">
+      <h3>Live Projects</h3>
+      <p>Tangible proof of competence that significantly boosts employability and demonstrates practical readiness to employers</p>
+    </div>
+
+        <div class="premium-card">
+      <img src="images/card4.avif">
       <h3>Placement Support</h3>
       <p>Dedicated placement assistance and interview preparation.</p>
     </div>
@@ -131,7 +165,7 @@
   <div class="founders-container">
 
     <div class="founders-heading">
-      <h2>Meet Our Founders</h2>
+      <h2>Meet Our Founder</h2>
       <p>
         Built by passionate professionals who believe in practical learning,
         real mentorship, and measurable career growth.
@@ -140,27 +174,13 @@
 
     <div class="founders-grid">
 
-      <!-- Founder 1 -->
-      <div class="founder-card">
-        <div class="founder-image">
-          <img src="Profile/dummy.png" alt="Founder 1">
-        </div>
-        <h3>Manish Kumar</h3>
-        <span>Co-Founder & Program Director</span>
-        <p>
-          With strong industry experience and hands-on technical expertise,
-          Manish focuses on designing career-oriented programs that align
-          with real market demands.
-        </p>
-      </div>
-
-      <!-- Founder 2 -->
+           <!-- Founder 2 -->
       <div class="founder-card">
         <div class="founder-image">
           <img src="Profile/dummy.png" alt="Founder 2">
         </div>
-        <h3>Co-Founder Name</h3>
-        <span>Co-Founder & Strategy Lead</span>
+        <h3>Archit Agarwal</h3>
+        <span>Founder & Business Leader</span>
         <p>
           Responsible for strategic growth, partnerships, and student
           success frameworks. Passionate about helping learners achieve
@@ -191,7 +211,7 @@
 
       <!-- Blog 1 -->
       <div class="blog-card">
-        <img src="images/blog1.jpg" alt="Blog 1">
+        <img src="images/blog.jpg" alt="Blog 1">
         <div class="blog-content">
           <h3>How to Become a Data Analyst in 2026</h3>
           <p>
@@ -204,7 +224,7 @@
 
       <!-- Blog 2 -->
       <div class="blog-card">
-        <img src="images/blog2.jpg" alt="Blog 2">
+        <img src="images/blog2.avif" alt="Blog 2">
         <div class="blog-content">
           <h3>DevOps Roadmap for Beginners</h3>
           <p>
@@ -217,7 +237,7 @@
 
       <!-- Blog 3 -->
       <div class="blog-card">
-        <img src="images/blog3.jpg" alt="Blog 3">
+        <img src="images/blog3.avif" alt="Blog 3">
         <div class="blog-content">
           <h3>Top Skills Companies Look For in Freshers</h3>
           <p>
@@ -269,14 +289,20 @@
 
     <!-- Right Side Form -->
     <div class="contact-form">
-      <form>
+      <form action="https://formsubmit.co/info@careeroot.com" method="POST"></form>
         <div class="input-group">
-          <input type="text" required>
+          <input type="text" name="name" required>
           <label>Your Name</label>
         </div>
 
         <div class="input-group">
-          <input type="email" required>
+          <input 
+  type="email" 
+  name="email" 
+  required 
+  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+  title="Please enter a valid email address (e.g. example@gmail.com)"
+>
           <label>Your Email</label>
         </div>
 
@@ -324,6 +350,7 @@
 
 <script src="js/slider.js"></script>
 <script src="js/hammenu.js"></script>
+<script src="js/form.js"></script>
 
 </body>
 </html>
