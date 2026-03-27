@@ -131,7 +131,7 @@ nav a:hover{
   text-align:center;
   color:rgb(0, 0, 0);
   padding:0 10%;
-  background-size:cover;
+  background-size:contain;
   background-position:center;
   transition:1s;
 }
