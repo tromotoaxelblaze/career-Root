@@ -1,899 +1,1479 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
+/* ============================================================
+   CAREEROOT — Main Stylesheet
+
+   Table of Contents:
+   1. Reset & Base
+   2. Color Variables
+   3. Header & Navigation
+   4. Hamburger Menu (Mobile)
+   5. Hero Section (Image Slider)
+   6. Courses Insight (Homepage Cards)
+   7. Premium Features
+   8. About Section
+   9. Founders Section
+   10. Blog Section
+   11. Contact Section
+   12. Footer
+   13. Courses Page
+   14. Blog Page
+   15. Shared Components (Buttons)
+   16. Responsive Breakpoints
+   ============================================================ */
+
+
+/* ================= 1. RESET & BASE ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-/* HEADER */
-.header{
-  position:fixed;
-  width:100%;
-  top:0;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 10%;
-  background:white;
-  box-shadow:0 2px 10px rgba(0,0,0,0.08);
-  z-index:1000;
-}
-/* hamburger button (hidden on desktop) */
-.hamburger{ display:none; background:none; border:0; cursor:pointer; padding:8px; }
-.hamburger .bar{ display:block; width:24px; height:2px; background:#333; margin:5px 0; transition:transform .25s ease, opacity .25s ease; }
-
-.header img{
-  width:100%;
-  height:auto;
-  object-fit:cover;
-}
-
-.logo{
-  font-size:24px;
-  font-weight:bold;
-}
-.logo{
-  font-size:24px;
-  font-weight:bold;
-}
-
-/* 👇 ADD THIS RIGHT BELOW */
-.logo img{
-  height:40px;
-  width:auto;
-}
-
-nav ul{
-  display:flex;
-  gap:40px; /* increased from 30px */
-  list-style:none;
-}
-
-nav a{
-  text-decoration:none;
-  color:#333;
-  font-weight:600;
-  font-size:15px;
-  padding:8px 16px;
-  border-radius:6px;
-  transition:0.3s;
-}
-
-nav a:hover{
-  background:#fff;
-  color:#2563eb;
-  box-shadow:0 4px 12px rgba(0,0,0,0.15);
-}
-/* MOBILE: below 768px */
-@media (max-width:768px){
-  .hamburger{ display:block; }
-
-  nav{
-    position:fixed;
-    top:70px;
-    right:0;
-    left:0;
-    background:#fff;
-    transform:translateY(-10px);
-    transition:opacity .2s ease, transform .2s ease;
-    opacity:0;
-    pointer-events:none;
-  }
-
-  nav.open{
-    opacity:1;
-    pointer-events:auto;
-    transform:translateY(0);
-  }
-
-  nav ul{
-    display:block;
-    padding:16px;
-  }
-
-  nav ul li{
-    margin:12px 0;
-  }
-
-  /* 👇 ADD THIS (your requirement) */
-  nav a{
-    display:block;
-    padding:12px;
-    border-radius:6px;
-  }
-
-  nav a:hover{
-    background:#f1f5f9;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-  }
-
-  /* hamburger animation */
-  .hamburger.open .bar:nth-child(1){
-    transform:translateY(7px) rotate(45deg);
-  }
-
-  .hamburger.open .bar:nth-child(2){
-    opacity:0;
-  }
-
-  .hamburger.open .bar:nth-child(3){
-    transform:translateY(-7px) rotate(-45deg);
-  }
+/* Push page content below the fixed header (~60px tall) */
+body {
+  padding-top: 64px;
 }
 
 
-/* HERO */
-.hero{
-  height:60vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:rgb(0, 0, 0);
-  padding:0 10%;
-  background-size:contain;
-  background-position:center;
-  transition:1s;
+/* ================= 2. COLOR VARIABLES =================
+   Centralised palette so every section stays consistent.
+   Usage: var(--primary), var(--primary-dark), etc.            */
+
+:root {
+  /* Primary blue */
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+
+  /* Accent purple (gradients, highlights) */
+  --accent: #7c3aed;
+
+  /* Neutral text */
+  --text-dark: #333;
+  --text-muted: #555;
+  --text-light: #777;
+
+  /* Backgrounds */
+  --bg-light: #f8fafc;
+  --bg-white: #ffffff;
+  --bg-dark: #0f172a;
+  --bg-dark-alt: #1e293b;
+
+  /* Accent for contact info labels */
+  --info-accent: #38bdf8;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+  /* Shared radii */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 15px;
+  --radius-xl: 20px;
 }
 
+
+/* ================= 3. HEADER & NAVIGATION ================= */
+
+/* Fixed top bar — always visible while scrolling */
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5%;
+  background: var(--bg-white);
+  box-shadow: var(--shadow-sm);
+  z-index: 1000;
+}
+
+/* Prevent any direct child <img> in header from overflowing */
+.header img {
+  width: auto;
+  height: auto;
+  object-fit: scale-down;
+}
+
+/* Logo wrapper — text or image */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Constrain logo image to a sensible height */
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* Horizontal nav links */
+nav ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background: var(--bg-white);
+  color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ================= 4. HAMBURGER MENU (Mobile) ================= */
+
+/* Hidden on desktop; toggled via js/hammenu.js */
+.hamburger {
+  display: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger .bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-dark);
+  margin: 5px 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+
+/* ================= 5. HERO SECTION (Image Slider) =================
+   Background images are set by js/slider.js.
+   - `contain` keeps the full poster visible without stretching/cropping.
+   - A subtle background colour fills any letterbox space.            */
+
+.hero {
+  height: 70vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #000;
+  padding: 0 10%;
+
+  /* Show full image — no cropping, no stretching */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Fills any space not covered by the image */
+  background-color: var(--bg-light);
+
+  /* Smooth cross-fade driven by slider.js */
+  transition: background-image 0.6s ease, opacity 0.4s ease;
+}
+
+/* Slider fade-out class (applied/removed by JS) */
 .fade {
   opacity: 0.6;
 }
 
-.hero-content h1{
-  font-size:48px;
-  margin-bottom:20px;
+/* Hero overlay text (currently commented out in HTML) */
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
 }
 
-.hero-content p{
-  font-size:18px;
-  margin-bottom:20px;
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 
 
+/* ================= 6. COURSES INSIGHT (Homepage) =================
+   Three large course cards on the homepage.                         */
 
-
-/* PREMIUM */
-.premium{
-  padding:100px 10%;
-  background:white;
-  text-align:center;
-}
-
-.premium h2{
-  font-size:36px;
-  margin-bottom:60px;
-}
-
-.premium-container{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:60px;
-}
-
-.premium-card{
-  text-align:left;
-}
-
-.premium-card img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:6px;
-  margin-bottom:15px;
+.courses-insight {
+  padding: 100px 8%;
+  text-align: center;
+  background: var(--bg-light);
 }
 
-.premium-card h3{
-  margin-bottom:10px;
+.courses-insight h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
-.premium-card p{
-  color:#555;
+.courses-insight p {
+  color: var(--text-light);
+  margin-bottom: 50px;
 }
 
-
-
-/* ABOUT */
-/* ================= ABOUT SECTION ================= */
-
-.about{
-  padding:100px 8%;
-  background:linear-gradient(135deg,#f8fafc,#eef2ff);
-  position:relative;
-}
-
-.about-container{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:60px;
-  align-items:center;
-}
-
-.about-text h2{
-  font-size:36px;
-  margin-bottom:20px;
-  background:linear-gradient(90deg,#2563eb,#7c3aed);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+/* Auto-fit grid — wraps to 1-col on small screens */
+.courses-insight-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
 }
 
-.about-text p{
-  margin-bottom:18px;
-  color:#444;
-  line-height:1.7;
-  font-size:16px;
+/* Shared course card (used on homepage AND courses page) */
+.course-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+  text-align: left;
 }
-/* ================= FOUNDERS SECTION ================= */
 
-.founders{
-  padding:100px 8%;
-  background:linear-gradient(135deg,#eef2ff,#f8fafc);
+.course-card:hover {
+  transform: translateY(-10px);
 }
 
-.founders-container{
-  max-width:1200px;
-  margin:auto;
+/* Card images — use `contain` so nothing gets cropped or stretched */
+.course-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: var(--bg-light);
 }
 
-.founders-heading{
-  text-align:center;
-  margin-bottom:60px;
+.course-card h3 {
+  margin: 15px 15px 5px;
 }
 
-.founders-heading h2{
-  font-size:36px;
-  margin-bottom:15px;
-  background:linear-gradient(90deg,#2563eb,#7c3aed);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+.course-card p {
+  padding: 0 15px;
+  color: var(--text-muted);
 }
 
-.founders-heading p{
-  color:#555;
-  max-width:600px;
-  margin:auto;
-  line-height:1.6;
+/* "View Course" button inside course cards */
+.course-btn {
+  display: inline-block;
+  margin: 15px;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-/* Grid */
-.founders-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:40px;
+.course-btn:hover {
+  background: var(--primary-dark);
 }
 
-/* Card */
-.founder-card{
-  background:rgba(255,255,255,0.6);
-  backdrop-filter:blur(15px);
-  border-radius:20px;
-  padding:40px 25px;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,0.05);
-  transition:0.3s;
-}
 
-.founder-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 15px 40px rgba(0,0,0,0.1);
-}
+/* ================= 7. PREMIUM FEATURES =================
+   2×2 grid showcasing Live Classes, Experts, Projects, Placement. */
 
-/* Image */
-.founder-image{
-  width:140px;
-  height:140px;
-  margin:0 auto 20px;
-  border-radius:50%;
-  overflow:hidden;
-  border:4px solid #2563eb;
+.premium {
+  padding: 100px 10%;
+  background: var(--bg-white);
+  text-align: center;
 }
 
-.founder-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.premium h2 {
+  font-size: 36px;
+  margin-bottom: 60px;
 }
 
-/* Text */
-.founder-card h3{
-  font-size:20px;
-  margin-bottom:5px;
+.premium-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
 }
 
-.founder-card span{
-  display:block;
-  font-size:14px;
-  color:#2563eb;
-  margin-bottom:15px;
-  font-weight:500;
+.premium-card {
+  text-align: left;
 }
 
-.founder-card p{
-  font-size:14px;
-  color:#555;
-  line-height:1.6;
+/* Premium card images — `contain` prevents cropping of icons/illustrations */
+.premium-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  margin-bottom: 15px;
+  background: var(--bg-light);
 }
 
-/* Responsive for phones/tablet*/
-@media(max-width:768px){
-  .founders{
-    padding:70px 6%;
-  }
-
-  .founders-heading h2{
-    font-size:28px;
-  }
-
+.premium-card h3 {
+  margin-bottom: 10px;
 }
 
-/* Stats Grid */
-.about-stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
+.premium-card p {
+  color: var(--text-muted);
 }
 
-.stat-card{
-  background:rgba(255,255,255,0.6);
-  backdrop-filter:blur(15px);
-  border-radius:16px;
-  padding:30px;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,0.05);
-  transition:0.3s;
-}
 
-.stat-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 15px 40px rgba(0,0,0,0.1);
-}
+/* ================= 8. ABOUT SECTION =================
+   Split layout: left text + right stat cards.         */
 
-.stat-card h3{
-  font-size:28px;
-  color:#2563eb;
-  margin-bottom:8px;
+.about {
+  padding: 100px 8%;
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+  position: relative;
 }
 
-.stat-card p{
-  color:#555;
-  font-size:14px;
+.about-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
 }
 
-/* Responsive */
-@media(max-width:900px){
-  .about-container{
-    grid-template-columns:1fr;
-  }
-
-  .about-text{
-    text-align:center;
-  }
-
-  .about-stats{
-    margin-top:30px;
-  }
+/* Gradient heading text */
+.about-text h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* ================= BLOG SECTION ================= */
-
-.blogs{
-  padding:100px 8%;
-  background:#f8fafc;
+.about-text p {
+  margin-bottom: 18px;
+  color: #444;
+  line-height: 1.7;
+  font-size: 16px;
 }
 
-.blogs-container{
-  max-width:1200px;
-  margin:auto;
+/* 2×2 stats grid */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.blogs-heading{
-  text-align:center;
-  margin-bottom:60px;
+/* Glass-morphism stat cards */
+.stat-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: 0.3s;
 }
 
-.blogs-heading h2{
-  font-size:36px;
-  margin-bottom:15px;
-  background:linear-gradient(90deg,#2563eb,#7c3aed);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
 }
 
-.blogs-heading p{
-  color:#555;
-  max-width:600px;
-  margin:auto;
-  line-height:1.6;
+.stat-card h3 {
+  font-size: 28px;
+  color: var(--primary);
+  margin-bottom: 8px;
 }
 
-/* Grid */
-.blogs-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:40px;
+.stat-card p {
+  color: var(--text-muted);
+  font-size: 14px;
 }
 
-/* Card */
-.blog-card{
-  background:#fff;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,0.05);
-  transition:0.3s;
-}
 
-.blog-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 15px 40px rgba(0,0,0,0.1);
-}
+/* ================= 9. FOUNDERS SECTION =================
+   Founder profile cards with circular avatar images.     */
 
-.blog-card img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
+.founders {
+  padding: 100px 8%;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
 }
 
-.blog-content{
-  padding:25px;
+.founders-container {
+  max-width: 1200px;
+  margin: auto;
 }
 
-.blog-content h3{
-  font-size:18px;
-  margin-bottom:12px;
+.founders-heading {
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-.blog-content p{
-  font-size:14px;
-  color:#555;
-  line-height:1.6;
-  margin-bottom:15px;
+.founders-heading h2 {
+  font-size: 36px;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.read-more{
-  text-decoration:none;
-  color:#2563eb;
-  font-weight:600;
-  font-size:14px;
+.founders-heading p {
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.6;
 }
 
-.read-more:hover{
-  text-decoration:underline;
+/* Auto-fit grid for founder cards */
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
 }
 
-/* View All Button */
-.view-all{
-  text-align:center;
-  margin-top:50px;
+/* Glass-morphism card */
+.founder-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: var(--radius-xl);
+  padding: 40px 25px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: 0.3s;
 }
 
-.view-btn{
-  display:inline-block;
-  padding:12px 30px;
-  background:#2563eb;
-  color:#fff;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:600;
-  transition:0.3s;
+.founder-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
 }
 
-.view-btn:hover{
-  background:#1d4ed8;
+/* Circular avatar wrapper */
+.founder-image {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--primary);
 }
 
-/* Responsive for mobile/tablet */
-@media(max-width:768px){
-  .blogs{
-    padding:70px 6%;
-  }
-
-  .blogs-heading h2{
-    font-size:28px;
-  }
-}
-/* FOOTER */
-footer{
-  background:#111;
-  color:white;
-  padding:60px 10% 20px;
+.founder-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.footer-container{
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:40px;
+.founder-card h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
 }
 
-footer a{
-  display:block;
-  color:#ccc;
-  margin-top:8px;
-  text-decoration:none;
+.founder-card span {
+  display: block;
+  font-size: 14px;
+  color: var(--primary);
+  margin-bottom: 15px;
+  font-weight: 500;
 }
 
-.copy{
-  text-align:center;
-  margin-top:30px;
-  color:#777;
+.founder-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
-
-
-/* MOBILE */
-@media(max-width:768px){
 
-  .hero-content h1{
-    font-size:28px;
-  }
 
-  nav ul{
-    gap:15px;
-  }
+/* ================= 10. BLOG SECTION =================
+   Three blog preview cards + "View All" link.          */
 
-  .premium-container{
-    grid-template-columns:1fr;
-  }
-
-  .footer-container{
-    flex-direction:column;
-  }
-
+.blogs {
+  padding: 100px 8%;
+  background: var(--bg-light);
 }
-/*--------------------------------Courses----*/
 
-/* COURSES PAGE */
-.courses-page{
-  padding:100px 8%;
-  text-align:center;
+.blogs-container {
+  max-width: 1200px;
+  margin: auto;
 }
 
-.courses-page h1{
-  font-size:38px;
-  margin-bottom:10px;
+.blogs-heading {
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-.courses-page p{
-  color:#777;
-  margin-bottom:40px;
+.blogs-heading h2 {
+  font-size: 36px;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* GRID */
-.courses-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-  gap:30px;
+.blogs-heading p {
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.6;
 }
 
-/* CARD */
-.course-card{
-  background:#fff;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-  transition:0.3s;
+/* Auto-fit grid */
+.blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
 }
 
-.course-card:hover{
-  transform:translateY(-10px);
+/* Blog card with lift-on-hover */
+.blog-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: 0.3s;
 }
 
-.course-card img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
+.blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
 }
 
-.course-card h3{
-  margin:15px 0 5px;
+/* Blog thumbnail — cover is fine here (photos crop well) */
+.blog-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-.course-card p{
-  padding:0 15px;
+.blog-content {
+  padding: 25px;
 }
 
-.course-card button{
-  margin:15px;
-  padding:10px 20px;
-  border:none;
-  background:#6c63ff;
-  color:#fff;
-  border-radius:6px;
-  cursor:pointer;
+.blog-content h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
 }
-.hero-btn{
-  display:block; /* changed from inline-block */
-  margin-top:15px; /* added spacing */
-  padding:12px 28px;
-  background:#2563eb;
-  color:#fff;
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:600;
-  transition:0.3s;
-}
 
-.hero-btn:hover{
-  background:#1d4ed8;
-  transform:translateY(-3px);
+.blog-content p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
-/* ================= BLOG PAGE ================= */
 
-.blog-page{
-  padding:100px 8%;
-  background:#f8fafc;
+.read-more {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 14px;
 }
 
-.blog-page-container{
-  max-width:900px;
-  margin:auto;
+.read-more:hover {
+  text-decoration: underline;
 }
 
-.blog-page h1{
-  text-align:center;
-  font-size:36px;
-  margin-bottom:60px;
-  background:linear-gradient(90deg,#2563eb,#7c3aed);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+/* "View All Articles" button wrapper */
+.view-all {
+  text-align: center;
+  margin-top: 50px;
 }
 
-.blog-full{
-  background:#fff;
-  padding:40px;
-  border-radius:20px;
-  margin-bottom:40px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.05);
-  transition:0.3s;
+.view-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-.blog-full:hover{
-  transform:translateY(-5px);
-  box-shadow:0 15px 40px rgba(0,0,0,0.1);
+.view-btn:hover {
+  background: var(--primary-dark);
 }
 
-.blog-full h2{
-  margin-bottom:15px;
-}
 
-.blog-full p{
-  line-height:1.7;
-  color:#444;
-  margin-bottom:15px;
-}
+/* ================= 11. CONTACT SECTION =================
+   Dark gradient background with floating-label form.     */
 
-/* CONTACT SECTION */
-.contact{
-  padding:100px 10%;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
-  color:#fff;
+.contact {
+  padding: 100px 10%;
+  background: linear-gradient(135deg, var(--bg-dark), var(--bg-dark-alt));
+  color: #fff;
 }
 
-.contact-container{
-  display:flex;
-  justify-content:space-between;
-  gap:60px;
-  flex-wrap:wrap;
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  flex-wrap: wrap;
 }
 
-.contact-info{
-  flex:1;
+/* Left column — text info */
+.contact-info {
+  flex: 1;
 }
 
-.contact-info h2{
-  font-size:36px;
-  margin-bottom:20px;
+.contact-info h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
 }
 
-.contact-info p{
-  margin-bottom:30px;
-  color:#cbd5e1;
+.contact-info p {
+  margin-bottom: 30px;
+  color: #cbd5e1;
 }
 
-.info-box{
-  margin-bottom:20px;
+.info-box {
+  margin-bottom: 20px;
 }
 
-.info-box h4{
-  font-size:18px;
-  color:#38bdf8;
-  margin-bottom:5px;
+.info-box h4 {
+  font-size: 18px;
+  color: var(--info-accent);
+  margin-bottom: 5px;
 }
 
-.contact-form{
-  flex:1;
-  background:rgba(255,255,255,0.05);
-  padding:40px;
-  border-radius:20px;
-  backdrop-filter:blur(10px);
-  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+/* Right column — glass-morphism form card */
+.contact-form {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-xl);
 }
 
-.input-group{
-  position:relative;
-  margin-bottom:30px;
+/* Floating-label input groups */
+.input-group {
+  position: relative;
+  margin-bottom: 30px;
 }
 
 .input-group input,
-.input-group textarea{
-  width:100%;
-  padding:14px;
-  background:transparent;
-  border:1px solid #475569;
-  border-radius:8px;
-  outline:none;
-  color:#fff;
-  font-size:14px;
+.input-group textarea {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 1px solid #475569;
+  border-radius: var(--radius-md);
+  outline: none;
+  color: #fff;
+  font-size: 14px;
 }
 
-.input-group label{
-  position:absolute;
-  top:50%;
-  left:14px;
-  transform:translateY(-50%);
-  color:#94a3b8;
-  pointer-events:none;
-  transition:0.3s;
+/* Label sits inside the input; floats up on focus/valid */
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+  transition: 0.3s;
 }
 
-.input-group textarea + label{
-  top:20px;
+/* Textarea label starts near top since there's no vertical center */
+.input-group textarea + label {
+  top: 20px;
 }
 
+/* Floating state — label moves above the border */
 .input-group input:focus + label,
 .input-group input:valid + label,
 .input-group textarea:focus + label,
-.input-group textarea:valid + label{
-  top:-10px;
-  left:10px;
-  font-size:12px;
-  background:#1e293b;
-  padding:0 5px;
-  color:#38bdf8;
+.input-group textarea:valid + label {
+  top: -10px;
+  left: 10px;
+  font-size: 12px;
+  background: var(--bg-dark-alt);
+  padding: 0 5px;
+  color: var(--info-accent);
 }
 
-.contact-btn{
-  width:100%;
-  padding:14px;
-  background:#2563eb;
-  border:none;
-  border-radius:8px;
-  color:#fff;
-  font-size:16px;
-  font-weight:600;
-  cursor:pointer;
-  transition:0.3s;
+/* Submit button */
+.contact-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  border: none;
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.contact-btn:hover{
-  background:#1d4ed8;
-  transform:translateY(-3px);
+.contact-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
 }
 
-/* Responsive */
-@media(max-width:900px){
-  .contact-container{
-    flex-direction:column;
+
+/* ================= 12. FOOTER ================= */
+
+footer {
+  background: #111;
+  color: white;
+  padding: 60px 10% 20px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+footer a {
+  display: block;
+  color: #ccc;
+  margin-top: 8px;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--primary);
+}
+
+.copy {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--text-light);
+}
+
+
+/* ================= 13. COURSES PAGE =================
+   Standalone course listing at courses.html.           */
+
+.courses-page {
+  padding: 100px 8%;
+  text-align: center;
+}
+
+.courses-page h1 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.courses-page p {
+  color: var(--text-light);
+  margin-bottom: 40px;
+}
+
+/* Grid for course cards */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+/* Legacy <button> inside course cards on courses.html */
+.course-card button {
+  margin: 15px;
+  padding: 10px 20px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.course-card button:hover {
+  background: var(--primary-dark);
+}
+
+
+/* ================= 14. BLOG PAGE =================
+   Full-article layout at blog.html.                 */
+
+.blog-page {
+  padding: 100px 8%;
+  background: var(--bg-light);
+}
+
+.blog-page-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.blog-page h1 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 60px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blog-full {
+  background: var(--bg-white);
+  padding: 40px;
+  border-radius: var(--radius-xl);
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-md);
+  transition: 0.3s;
+}
+
+.blog-full:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.blog-full h2 {
+  margin-bottom: 15px;
+}
+
+.blog-full p {
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+
+/* ================= 15. SHARED COMPONENTS ================= */
+
+/* Hero call-to-action button (currently unused in HTML) */
+.hero-btn {
+  display: block;
+  margin-top: 15px;
+  padding: 12px 28px;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+}
+
+
+/* ================= 16. COURSE MODAL (courses.html popup) =================
+   Overlay modal that shows course image, syllabus, and buy link.          */
+
+/* Dark overlay behind the modal */
+.modal-overlay {
+  display: none;                 /* hidden by default; JS sets display:flex */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Visible state (added by JS) */
+.modal-overlay.active {
+  display: flex;
+}
+
+/* The modal card itself */
+.modal-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-xl);
+  max-width: 620px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  animation: modalIn 0.3s ease;
+  position: relative;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Close button (top-right corner) */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--text-muted);
+  cursor: pointer;
+  z-index: 10;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--text-dark);
+}
+
+/* Course image inside modal */
+.modal-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background: var(--bg-light);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+/* Modal text body */
+.modal-body {
+  padding: 28px;
+}
+
+.modal-body h2 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.modal-body .modal-tagline {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Syllabus list inside modal */
+.modal-body h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.modal-syllabus {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.modal-syllabus li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: var(--text-dark);
+  padding-left: 18px;
+  position: relative;
+}
+
+.modal-syllabus li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* Price + Buy row */
+.modal-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.modal-price {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.modal-buy-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.modal-buy-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+
+/* ================= 17. TOAST / POPUP NOTIFICATIONS =================
+   Small toast messages for form validation feedback.                 */
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 3000;
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  text-align: center;
+  max-width: 90vw;
+}
+
+/* Slide-up visible state */
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Success variant (green) */
+.toast.toast-success {
+  background: #16a34a;
+}
+
+/* Error variant (red) */
+.toast.toast-error {
+  background: #dc2626;
+}
+
+/* Warning variant (amber) */
+.toast.toast-warning {
+  background: #d97706;
+}
+
+
+/* ================= 18. COURSE DETAIL PAGES =================
+   Full JD-style course pages (course-webdev.html, etc.)      */
+
+.course-detail-page {
+  background: var(--bg-light);
+}
+
+.course-detail-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+/* Hero header area */
+.course-detail-header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(135deg, var(--bg-dark), var(--bg-dark-alt));
+  color: #fff;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  margin-bottom: 40px;
+}
+
+.course-detail-header h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.course-detail-header p {
+  color: #cbd5e1;
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+/* Category badge */
+.course-detail-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Price block */
+.course-detail-price {
+  margin-top: 20px;
+}
+
+.price-label {
+  font-size: 14px;
+  color: #94a3b8;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.price-amount {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* Content sections */
+.course-detail-section {
+  background: var(--bg-white);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-md);
+}
+
+.course-detail-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+
+.course-detail-section p {
+  color: #444;
+  line-height: 1.7;
+}
+
+/* "What You'll Learn" 2×2 grid */
+.course-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.course-detail-card {
+  background: var(--bg-light);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.course-detail-card h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+.course-detail-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Syllabus module blocks */
+.course-detail-module {
+  margin-bottom: 24px;
+}
+
+.course-detail-module h3 {
+  font-size: 17px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+/* Syllabus bullet lists */
+.course-detail-list {
+  list-style: none;
+  padding: 0;
+}
+
+.course-detail-list li {
+  padding: 6px 0 6px 22px;
+  position: relative;
+  font-size: 14px;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.course-detail-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* Who Is This For / Career Outcomes lists inside sections */
+.course-detail-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.course-detail-section ul li {
+  padding: 8px 0 8px 22px;
+  position: relative;
+  font-size: 15px;
+  color: #444;
+}
+
+.course-detail-section ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* Bottom CTA button */
+.course-detail-cta {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.course-detail-cta a {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.course-detail-cta a:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+}
+
+
+/* ================= 19. RESPONSIVE BREAKPOINTS =================
+   Adjusts layout, typography, and spacing for smaller screens.  */
+
+/* --- Tablet (≤ 1024px) --- */
+@media (max-width: 1024px) {
+  .hero {
+    height: 60vh;
+    padding: 0 5%;
   }
 }
-/* ================= HOME COURSES (BIG CARDS) ================= */
 
-.courses-insight{
-  padding:100px 8%;
-  text-align:center;
-  background:#f8fafc;
-}
+/* --- Tablet / small laptop (≤ 900px) --- */
+@media (max-width: 900px) {
+  /* Stack about section vertically */
+  .about-container {
+    grid-template-columns: 1fr;
+  }
 
-.courses-insight h2{
-  font-size:36px;
-  margin-bottom:10px;
-}
+  .about-text {
+    text-align: center;
+  }
 
-.courses-insight p{
-  color:#777;
-  margin-bottom:50px;
-}
+  .about-stats {
+    margin-top: 30px;
+  }
 
-/* Grid */
-.courses-insight-container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
-  gap:40px;
-}
+  /* Stack contact form below info */
+  .contact-container {
+    flex-direction: column;
+  }
 
-/* SAME AS COURSES PAGE */
-.course-card{
-  background:#fff;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-  transition:0.3s;
-  text-align:left;
-}
-
-.course-card:hover{
-  transform:translateY(-10px);
-}
-
-.course-card img{  
-  width:100%;
-  height:200px;
-  object-fit:cover;
-}
-
-.course-card h3{
-  margin:15px 15px 5px;
-}
-
-.course-card p{
-  padding:0 15px;
-  color:#555;
-}
-
-/* Button */
-.course-btn{
-  display:inline-block;
-  margin:15px;
-  padding:10px 20px;
-  background:#2563eb;
-  color:#fff;
-  border-radius:6px;
-  text-decoration:none;
-  transition:0.3s;
-}
-
-.course-btn:hover{
-  background:#1d4ed8;
-}
-
-/* ================= RESPONSIVE HERO FIX ================= */
-
-/* Default (desktop) */
-.hero{
-  height:70vh; /* slightly bigger */
-  min-height:400px; /* prevents too small hero */
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
-
-/* Tablet */
-@media (max-width:1024px){
-  .hero{
-    height:60vh;
-    padding:0 5%;
+  /* Course detail: stack 2-col grid */
+  .course-detail-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-/* Mobile */
-@media (max-width:768px){
-  .hero{
-    height:50vh;
-    min-height:300px;
-    padding:0 20px;
-    background-position:center center;
+/* --- Mobile (≤ 768px) --- */
+@media (max-width: 768px) {
+
+  /* Show hamburger button */
+  .hamburger {
+    display: block;
   }
 
-  .hero-content h1{
-    font-size:24px;
+  /* Slide-down navigation panel */
+  nav {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    left: 0;
+    background: var(--bg-white);
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    opacity: 0;
+    pointer-events: none;
   }
 
-  .hero-content p{
-    font-size:14px;
+  nav.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
-  .hero-btn{
-    font-size:14px;
-    padding:10px 20px;
+  nav ul {
+    display: block;
+    padding: 16px;
+  }
+
+  nav ul li {
+    margin: 12px 0;
+  }
+
+  nav a {
+    display: block;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+  }
+
+  nav a:hover {
+    background: #f1f5f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Hamburger → X animation */
+  .hamburger.open .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Hero adjustments */
+  .hero {
+    height: 50vh;
+    min-height: 280px;
+    padding: 0 20px;
+    background-position: center center;
+  }
+
+  .hero-content h1 {
+    font-size: 24px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .hero-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  /* ---- MOBILE IMAGE FIX ----
+     Remove fixed heights → images display at natural aspect ratio.
+     No gaps, no cropping. The card constrains the width,
+     and the image scales proportionally.                           */
+  .course-card img {
+    height: auto;
+    max-height: 220px;
+    object-fit: contain;
+  }
+
+  /* Home course grid: reduce gap & allow smaller cards */
+  .courses-insight-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .courses-insight {
+    padding: 60px 5%;
+  }
+
+  .courses-insight h2 {
+    font-size: 28px;
+  }
+
+  .courses-insight p {
+    margin-bottom: 30px;
+  }
+
+  /* Premium: single column, auto-height images */
+  .premium-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .premium {
+    padding: 60px 5%;
+  }
+
+  .premium-card img {
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+  }
+
+  /* Founders */
+  .founders {
+    padding: 70px 6%;
+  }
+
+  .founders-heading h2 {
+    font-size: 28px;
+  }
+
+  /* Blogs */
+  .blogs {
+    padding: 70px 6%;
+  }
+
+  .blogs-heading h2 {
+    font-size: 28px;
+  }
+
+  /* Blog card images: auto height on mobile too */
+  .blog-card img {
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  /* Stack footer columns */
+  .footer-container {
+    flex-direction: column;
+  }
+
+  /* Modal adjustments for mobile */
+  .modal-card {
+    max-height: 90vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .modal-card img {
+    height: 160px;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
+
+  .modal-price-row {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  /* Course detail pages on mobile */
+  .course-detail-header h1 {
+    font-size: 26px;
+  }
+
+  .course-detail-section {
+    padding: 24px;
+  }
+
+  .course-detail-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-/* Small mobile */
-@media (max-width:480px){
-  .hero{
-    height:45vh;
+/* --- Small mobile (≤ 480px) --- */
+@media (max-width: 480px) {
+  .hero {
+    height: 40vh;
+    min-height: 220px;
+  }
+
+  /* Even on tiny screens, keep auto-height for no gaps */
+  .course-card img {
+    max-height: 180px;
+  }
+
+  .premium-card img {
+    max-height: 160px;
+  }
+
+  .course-detail-header {
+    padding: 40px 15px 30px;
+  }
+
+  .price-amount {
+    font-size: 26px;
   }
 }

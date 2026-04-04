@@ -12,14 +12,14 @@
 <!-- HEADER -->
 <header class="header">
   <div class="logo">Careeroot</div>
-  <!-- for hambuerger menu-->
+  <!-- Hamburger menu toggle (mobile) -->
   <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
 
-  <nav id="main-nav" class="nav" >
+  <nav id="main-nav" class="nav">
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="courses.html">Courses</a></li>
@@ -38,41 +38,163 @@
 
   <div class="courses-grid">
 
-    <!-- Course 1 -->
+    <!-- Course 1: Full Stack Web Development -->
     <div class="course-card">
-      <img src="images/poster1.jpg" alt="">
+      <img src="images/poster1.png" alt="Full Stack Web Development">
       <h3>Full Stack Web Development</h3>
       <p>React, Node, MongoDB, real world projects.</p>
-      <button>Know More</button>
+      <button onclick="openModal('modal-webdev')">Know More</button>
     </div>
 
-    <!-- Course 2 -->
+    <!-- Course 2: Data Analyst -->
     <div class="course-card">
-      <img src="images/poster2.jpg" alt="">
+      <img src="images/poster2.png" alt="Data Analyst">
       <h3>Data Analyst</h3>
       <p>SQL, Power BI, Excel, Python and internships.</p>
-      <button>Know More</button>
+      <button onclick="openModal('modal-data')">Know More</button>
     </div>
 
-    <!-- Course 3 -->
+    <!-- Course 3: DevOps with AWS -->
     <div class="course-card">
-      <img src="images/poster3.jpg" alt="">
+      <img src="images/poster3.png" alt="DevOps with AWS">
       <h3>DevOps with AWS</h3>
       <p>CI/CD, Docker, Kubernetes, cloud projects.</p>
-      <button>Know More</button>
+      <button onclick="openModal('modal-devops')">Know More</button>
     </div>
 
-    <!-- Course 4 -->
+    <!-- Course 4: Power Platform -->
     <div class="course-card">
-      <img src="images/poster4.jpg" alt="">
-      <h3>Java Backend</h3>
-      <p>Spring Boot, microservices, live projects.</p>
-      <button>Know More</button>
+      <img src="images/poster4.jpg" alt="Power Platform">
+      <h3>Power Platform</h3>
+      <p>PowerApps, Power Automate, SharePoint, AI Builder.</p>
+      <button onclick="openModal('modal-power')">Know More</button>
     </div>
 
   </div>
 
 </section>
+
+
+<!-- ============================================================
+     COURSE MODALS
+     Each modal shows: course image, syllabus, price, and a
+     "Buy Now" link that navigates to the full course detail page.
+     ============================================================ -->
+
+<!-- MODAL: Full Stack Web Development -->
+<div class="modal-overlay" id="modal-webdev">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal('modal-webdev')">&times;</button>
+    <img src="images/poster1.png" alt="Full Stack Web Development">
+    <div class="modal-body">
+      <h2>Full Stack Web Development</h2>
+      <p class="modal-tagline">Build production-ready apps with React, Node.js, and MongoDB.</p>
+
+      <h3>Course Syllabus</h3>
+      <ul class="modal-syllabus">
+        <li>HTML5, CSS3, Flexbox, Grid & Responsive Design</li>
+        <li>JavaScript ES6+, DOM, Async/Await & Fetch API</li>
+        <li>React.js — Components, Hooks, Router & Redux</li>
+        <li>Node.js & Express — REST APIs, JWT Auth, Middleware</li>
+        <li>MongoDB & Mongoose — Schema Design, CRUD, Aggregation</li>
+        <li>Git, GitHub, Deployment (Vercel, AWS EC2)</li>
+        <li>Capstone: Full-Stack E-Commerce / Social App</li>
+      </ul>
+
+      <div class="modal-price-row">
+        <span class="modal-price">&#8377; ---</span>
+        <a href="course-webdev.html" class="modal-buy-btn">View Full Details &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Data Analyst -->
+<div class="modal-overlay" id="modal-data">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal('modal-data')">&times;</button>
+    <img src="images/poster2.png" alt="Data Analyst">
+    <div class="modal-body">
+      <h2>Data Analyst</h2>
+      <p class="modal-tagline">Master SQL, Python, Power BI and land your first analytics role.</p>
+
+      <h3>Course Syllabus</h3>
+      <ul class="modal-syllabus">
+        <li>Excel — Pivot Tables, VLOOKUP/XLOOKUP, Data Cleaning</li>
+        <li>SQL — JOINs, Subqueries, Window Functions, CTEs</li>
+        <li>Python — Pandas, NumPy, Matplotlib, Seaborn</li>
+        <li>Power BI — DAX, Data Modeling, Interactive Dashboards</li>
+        <li>Statistics — Hypothesis Testing, Correlation, Regression</li>
+        <li>Projects: Sales Dashboard, Customer Segmentation, HR Analytics</li>
+        <li>Interview Prep — SQL Challenges, Case Studies, Portfolio</li>
+      </ul>
+
+      <div class="modal-price-row">
+        <span class="modal-price">&#8377; ---</span>
+        <a href="course-data.html" class="modal-buy-btn">View Full Details &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: DevOps with AWS -->
+<div class="modal-overlay" id="modal-devops">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal('modal-devops')">&times;</button>
+    <img src="images/poster3.png" alt="DevOps with AWS">
+    <div class="modal-body">
+      <h2>DevOps with AWS</h2>
+      <p class="modal-tagline">Automate infrastructure with Docker, Kubernetes, and CI/CD on AWS.</p>
+
+      <h3>Course Syllabus</h3>
+      <ul class="modal-syllabus">
+        <li>Linux & Shell Scripting — File System, Bash, Cron Jobs</li>
+        <li>Git — Branching, Merging, PR Workflows</li>
+        <li>Docker — Dockerfiles, Compose, Multi-stage Builds</li>
+        <li>Kubernetes — Pods, Services, Deployments, Helm Charts</li>
+        <li>AWS — EC2, S3, IAM, RDS, VPC, Lambda, CloudFormation</li>
+        <li>CI/CD — Jenkins, GitHub Actions, ArgoCD, SonarQube</li>
+        <li>Monitoring — Prometheus, Grafana, ELK Stack</li>
+        <li>Capstone: End-to-end Build → Test → Deploy → Monitor</li>
+      </ul>
+
+      <div class="modal-price-row">
+        <span class="modal-price">&#8377; ---</span>
+        <a href="course-devops.html" class="modal-buy-btn">View Full Details &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Power Platform -->
+<div class="modal-overlay" id="modal-power">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal('modal-power')">&times;</button>
+    <img src="images/poster4.jpg" alt="Power Platform">
+    <div class="modal-body">
+      <h2>Power Platform</h2>
+      <p class="modal-tagline">Build business apps with PowerApps, Power Automate, and AI Builder.</p>
+
+      <h3>Course Syllabus</h3>
+      <ul class="modal-syllabus">
+        <li>Power Platform Overview — Ecosystem, Licensing, Dataverse</li>
+        <li>PowerApps Canvas — Screens, Controls, Formulas, Variables</li>
+        <li>PowerApps Model-Driven — Tables, Views, Business Rules</li>
+        <li>Power Automate — Cloud Flows, Triggers, Approvals, Connectors</li>
+        <li>Power BI Integration — Reports, Embedding in Apps</li>
+        <li>SharePoint — Lists, Libraries, Custom Forms</li>
+        <li>AI Builder & Copilot — Form Processing, Text Classification</li>
+        <li>Capstone: Business Process Automation App</li>
+      </ul>
+
+      <div class="modal-price-row">
+        <span class="modal-price">&#8377; ---</span>
+        <a href="course-power.html" class="modal-buy-btn">View Full Details &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- FOOTER -->
 <footer>
@@ -99,11 +221,54 @@
 
   </div>
 
-  <p class="copy">© 2026 Careeroot. All rights reserved.</p>
+  <p class="copy">&copy; 2026 Careeroot. All rights reserved.</p>
 
 </footer>
 
+<!-- Scripts -->
 <script src="js/hammenu.js"></script>
+
+<script>
+/* ============================================================
+   MODAL OPEN / CLOSE
+   Opens the course popup when "Know More" is clicked.
+   Closes on ✕ button or clicking outside the modal card.
+   ============================================================ */
+
+function openModal(id) {
+  var overlay = document.getElementById(id);
+  if (overlay) {
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";  // prevent background scroll
+  }
+}
+
+function closeModal(id) {
+  var overlay = document.getElementById(id);
+  if (overlay) {
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";         // restore scrolling
+  }
+}
+
+// Close modal when clicking outside the card (on the dark overlay)
+document.querySelectorAll(".modal-overlay").forEach(function (overlay) {
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) {
+      closeModal(overlay.id);
+    }
+  });
+});
+
+// Close modal on Escape key
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    document.querySelectorAll(".modal-overlay.active").forEach(function (overlay) {
+      closeModal(overlay.id);
+    });
+  }
+});
+</script>
 
 </body>
 </html>
