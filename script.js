@@ -4,10 +4,9 @@
 const hero = document.querySelector(".hero");
 
 const images = [
-  "images/poster1.jpeg",
-  "images/poster2.jpeg",
-  "images/poster3.jpeg",
-  "images/poster4.jpeg"
+  "images/Slide1.jpg",
+  "images/Slide2.jpg",
+  "images/Slide3.jpg"
 ];
 
 let i = 0;
