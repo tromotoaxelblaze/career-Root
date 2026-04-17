@@ -27,9 +27,10 @@ const hero = document.querySelector(".hero");
 if (hero) {
 
   const images = [
-    "images/poster1.png",
-    "images/poster2.png",
-    "images/poster3.png"
+    "images/Slide1.JPG",
+    "images/Slide2.JPG",
+    "images/Slide3.JPG"
+  
   ];
 
   // Preload images (no flicker)
