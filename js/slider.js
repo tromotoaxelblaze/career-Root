@@ -27,9 +27,9 @@ const hero = document.querySelector(".hero");
 if (hero) {
 
   const images = [
-    "images/Slide1.JPG",
-    "images/Slide2.JPG",
-    "images/Slide3.JPG"
+    "images/Slide1.jpg",
+    "images/Slide2.jpg",
+    "images/Slide3.jpg"
   
   ];
 
