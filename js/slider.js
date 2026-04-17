@@ -29,8 +29,7 @@ if (hero) {
   const images = [
     "images/poster1.png",
     "images/poster2.png",
-    "images/poster3.png",
-    "images/Poster11.webp"
+    "images/poster3.png"
   ];
 
   // Preload images (no flicker)
